@@ -15,12 +15,11 @@ const io = require('socket.io')(server, options);
 
 io.on('connection', socket => {
   console.log('IO connected');
-  socket.on('destroy', () => {
-    console.log('destroyed');
-  });
-  socket.on('hello', () => {
-    console.log('hello');
-  });
+
+  // Example Function
+  //socket.on('hello', () => {
+  //  console.log('hello');
+  //});
 });
 
 module.exports = {

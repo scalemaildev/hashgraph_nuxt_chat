@@ -4,7 +4,6 @@ export const state = () => ({
 
 export const mutations = {
   addIo(state, fn) {
-    console.log('hi there');
     state.socket = fn;
   },
 };

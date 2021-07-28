@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <div>Navbar</div>
+<v-app dark>
+  <v-main class="main-layout">
+    <div class="title-header text-center">      
+      <h1>Hashgraph Nuxt Chat ♄</h1>
+    </div>
     <Nuxt />
-  </div>
+  </v-main>
+  </v-app>
 </template>
 
 <script>
-export default {
+export default {  
   mounted() {
-    window.socket = io();
+    //window.socket = io();
     this.$store.commit("addIo", io);
-    window.addEventListener("beforeunload", (event) => {
-      window.socket.emit("destroy");
-    });
-  },
-  destroyed() {
-    window.socket.emit("destroy");
-  },
+  }
 };
 </script>
 
