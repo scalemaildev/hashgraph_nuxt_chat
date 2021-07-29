@@ -17,13 +17,13 @@
       <v-spacer/>
       <v-col cols="5">
 	<v-text-field
-	  v-model="ephTopicId"
+	  v-model="topicId"
 	  :rules="[rules.topicId]"
 	  label="Topic ID"/>
       </v-col>
       <v-col cols="2">
 	<v-btn
-	  @click="setTopicId(ephTopicId)"
+	  @click="setTopicId(topicId)"
 	  >
 	  Submit
 	</v-btn>
@@ -68,7 +68,7 @@ import { mapMutations, mapActions } from 'vuex';
 export default {
   data() {
     return {
-      ephTopicId: "",
+      topicId: "",
       rules: {
 	topicId: value => {
 	  const pattern = /0.0.[0-9]{3,}/
@@ -84,9 +84,6 @@ export default {
     topicSet () {
       return this.$store.state.topicSet
     },
-    topicId () {
-      return this.$store.state.topicId
-    },
     mirrorSubbed () {
       return this.$store.state.mirrorSubbed
     }
@@ -98,26 +95,52 @@ export default {
       name: 'main',
       reconnection: false
     })
-    this.socket.emit('initHederaClient')
+    this.initHederaClient()
   },
   methods: {
     ...mapMutations([
-      'setEnv',
-      'initHashgraphClient',
-      'setTopicId',
-      'createNewTopicId',
+      'toggleTopicSet',
+      'toggleTopicQuerying'
     ]),
-    ...mapActions([
-      'createAndSetTopicId',
-    ]),
-    subscribeToMirror() {
-      return new Promise((resolve) => {
-        this.socket.emit('subscribeToMirror', {
-	  client: this.$store.state.HederaClient,
-	  topicId: this.$store.state.topicId
-	}, (resp) => {
-          resolve()
-        })
+    asyncEmit(eventName, data, socket = this.socket) {
+      return new Promise(function (resolve, reject) {
+	socket.emit(eventName, data);
+	socket.on(eventName, result => {
+	  socket.off(eventName);
+	  resolve(result);
+	});
+	setTimeout(reject, 8000);
+      });
+    },
+    async initHederaClient () {
+      const result = await this.asyncEmit('initHederaClient', {})
+      console.log(result);
+    },
+    async setTopicId(topicId) {
+      const result = await this.asyncEmit('setTopicId', {
+	topicId: topicId
+      })
+      console.log(result)
+      this.topicId = topicId
+      this.toggleTopicSet(true)
+      this.toggleTopicQuerying(false)
+    },
+
+    async createNewTopicId() {
+      try {
+	const newTopicId = await this.asyncEmit('createNewTopicId', {})
+	return newTopicId;
+      } catch (e) {
+	throw e;
+      }
+    },
+    
+    createAndSetTopicId() {
+      console.log('Creating new topic id...')
+      this.toggleTopicQuerying(true)
+      this.createNewTopicId().then(resp => {
+	console.log('Got new topic id: ' + resp)
+	this.setTopicId(resp)
       })
     },
   }

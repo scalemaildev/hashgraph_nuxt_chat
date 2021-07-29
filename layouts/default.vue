@@ -10,12 +10,6 @@
 </template>
 
 <script>
-export default {  
-  mounted() {
-    //window.socket = io();
-    this.$store.commit("addIo", io);
-  }
-};
 </script>
 
 <style scoped>
