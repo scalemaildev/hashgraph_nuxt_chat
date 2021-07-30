@@ -1,3 +1,6 @@
+/* Utils */
+const TextDecoder = require("text-encoding").TextDecoder;
+
 /* From SDK */
 const {
   Client,
@@ -58,8 +61,23 @@ async function createNewTopicId() {
   }
 }
 
+async function subscribeToMirror(topicId) {
+  try {
+    new TopicMessageQuery()
+      .setTopicId(topicId)
+      .setStartTime(0) // TODO: set this three days back
+      .subscribe(HederaClient, res => {	
+	const message = new TextDecoder("utf-8").decode(res.contents);
+	io.emit('newMessage', message);
+      });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   initHashgraphClient,
   setTopicId,
-  createNewTopicId
+  createNewTopicId,
+  subscribeToMirror
 };

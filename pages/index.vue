@@ -47,7 +47,7 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-btn
-	@click="subscribeToMirror()">
+	@click="subscribeToMirror(topicId)">
 	Subscribe
       </v-btn>
     </v-row>
@@ -100,7 +100,8 @@ export default {
   methods: {
     ...mapMutations([
       'toggleTopicSet',
-      'toggleTopicQuerying'
+      'toggleTopicQuerying',
+      'toggleMirrorSubbed'
     ]),
     asyncEmit(eventName, data, socket = this.socket) {
       return new Promise(function (resolve, reject) {
@@ -142,6 +143,17 @@ export default {
 	console.log('Got new topic id: ' + resp)
 	this.setTopicId(resp)
       })
+    },
+
+    async subscribeToMirror(topicId) {
+      console.log('Subscribing to mirror network...')
+      this.socket.emit('subscribeToMirror', {
+	topicId: topicId
+      })      
+      this.socket.on('newMessage', result => {
+	console.log(result)
+      })
+      this.toggleMirrorSubbed(true)
     },
   }
 };

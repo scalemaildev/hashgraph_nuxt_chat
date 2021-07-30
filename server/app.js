@@ -33,6 +33,11 @@ io.on('connection', socket => {
     let response = await hashgraph.createNewTopicId();
     io.emit('createNewTopicId', response);
   });
+
+  socket.on('subscribeToMirror', async (data) => {    
+    let topicId = data.topicId;
+    await hashgraph.subscribeToMirror(topicId);
+  });
 });
 
 module.exports = {

@@ -13,5 +13,9 @@ export const mutations = {
 
   toggleTopicQuerying(state, bool) {
     state.topicQuerying = bool;
+  },
+
+  toggleMirrorSubbed(state, bool) {
+    state.mirrorSubbed = bool;
   }
 };
