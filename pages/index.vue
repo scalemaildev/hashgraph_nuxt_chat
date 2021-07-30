@@ -10,7 +10,8 @@
   <SubscribePanel />
 </div>
 <div v-else>
-  <Chatbox />
+  <ChatWindow />
+  <ChatBox />
 </div>
 </v-container>
 </template>

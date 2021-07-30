@@ -32,7 +32,7 @@ export const actions = {
     }
     let eventName = context.eventName;
     let socket = window.$nuxt.$root.mainSocket;
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
       socket.emit(eventName, context);
       socket.on(eventName, result => {
 	socket.off(eventName);

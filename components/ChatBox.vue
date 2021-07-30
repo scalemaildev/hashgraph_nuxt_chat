@@ -2,7 +2,7 @@
 <v-container>
   <v-row>
     <v-col cols="12" align="center" justify="center">
-      Success!
+      Chat input goes here.
     </v-col>
   </v-row>
 </v-container>
