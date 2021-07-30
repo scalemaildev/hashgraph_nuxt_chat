@@ -1,0 +1,8 @@
+* Features
+** TODO Chat Box
+- Chat box should be a text input panel spanning the usual width with a send button. The send button submits a new message to the subbed topic.
+** TODO Chat Window
+- Chat window should spit out messages on newlines as the subscribed mirror emits them to the client. This window will need a fixed height with a scrollbar. There will need to be method handling for the chat messages to put out usernames (see the original HCS chat demo).
+* Bugs
+** TODO Add error handling
+- Each startup panel should raise an error version of itself if it gets a -1 back as a response. This is particuarly important for the subscribe panel when the transaction start time error pops up.
