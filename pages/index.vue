@@ -57,13 +57,13 @@
       <v-col cols="12" align="center" justify="center">
 	<strong>Success!</strong>
       </v-col>
-    </v-row>    
+    </v-row>  
   </div>
 </v-container>
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import { mapMutations } from 'vuex';
 
 export default {
   data() {
