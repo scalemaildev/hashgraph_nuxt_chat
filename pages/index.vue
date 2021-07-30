@@ -1,5 +1,5 @@
 <template>
-<div>
+<v-container>
 <div v-if="topicQuerying && !topicSet">
   <FetchPanel />
 </div>
@@ -13,7 +13,6 @@
   <Chatbox />
 </div>
 </v-container>
-</div>
 </template>
 
 <script>
