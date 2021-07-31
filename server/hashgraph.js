@@ -69,8 +69,11 @@ async function subscribeToMirror(topicId) {
       .setTopicId(topicId)
       .setStartTime(0) // TODO: set this three days back
       .subscribe(HederaClient, res => {	
-	const message = new TextDecoder("utf-8").decode(res.contents);
-	io.emit('newMessage', message);
+	const contents = new TextDecoder("utf-8").decode(res.contents);
+	io.emit('newMessage', {
+	  'messageType': 'message',
+	  'contents': contents
+	});
       });
   } catch (error) {
     console.error(error);
