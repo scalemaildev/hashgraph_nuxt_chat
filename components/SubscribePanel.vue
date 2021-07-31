@@ -36,9 +36,6 @@ export default {
       console.log('Subscribing to mirror network...')
       this.socket.emit('subscribeToMirror', {
 	topicId: topicId
-      })      
-      this.socket.on('newMessage', result => {
-	console.log(result)
       })
       this.toggleMirrorSubbed(true)
     },

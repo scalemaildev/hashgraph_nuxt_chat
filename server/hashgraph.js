@@ -14,6 +14,7 @@ const {
 /* Inits */
 var HederaClient = "";
 var topicId = "";
+var operatorAccountId = process.env.ACCOUNT_ID;
 
 function initHashgraphClient() {
   if (!process.env.ACCOUNT_ID || !process.env.PRIVATE_KEY) {
@@ -25,6 +26,7 @@ function initHashgraphClient() {
       let accountId = AccountId.fromString(process.env.ACCOUNT_ID);
       let privateKey = PrivateKey.fromString(process.env.PRIVATE_KEY);
       HederaClient.setOperator(accountId, privateKey);
+      operatorAccountId = accountId;
       return 'Hedera client initialized...';
     } catch (error) {
       console.error(error);
@@ -76,6 +78,7 @@ async function subscribeToMirror(topicId) {
 };
 
 module.exports = {
+  operatorAccountId,
   initHashgraphClient,
   setTopicId,
   createNewTopicId,

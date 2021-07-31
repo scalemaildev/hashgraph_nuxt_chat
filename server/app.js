@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
@@ -5,6 +6,12 @@ const hashgraph = require('./hashgraph');
 express.json();
 express.urlencoded({extended: true});
 
+// Make sure there's an account in .env
+if (!process.env.ACCOUNT_ID) {
+  throw 'NO ACCOUNT ID FOUND IN .ENV!';
+}
+
+// Socket
 const options = {
   cors: {
     origin: "http://localhost:3000",
@@ -15,9 +22,11 @@ const io = require('socket.io')(server, options);
 
 // IO
 io.on('connection', socket => {
-  console.log('IO connected');
+  io.emit('newMessage', {
+    'messageType': 'newConnection',
+    'accountId': process.env.ACCOUNT_ID,
+  });
 
-  // Init the hedera client
   socket.on('initHederaClient', () => {
     let response = hashgraph.initHashgraphClient();
     io.emit('initHederaClient', response);

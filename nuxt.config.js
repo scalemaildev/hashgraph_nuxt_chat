@@ -50,7 +50,10 @@ export default {
     sockets: [{
       name: 'main',
       default: true,
-      url: 'http://localhost:3000'
+      url: 'http://localhost:3000',
+      vuex: {
+	actions: [{newMessage: 'formatMessage'}]
+      }
     }]
   },
 

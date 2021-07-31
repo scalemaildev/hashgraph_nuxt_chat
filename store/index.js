@@ -20,6 +20,9 @@ export const mutations = {
   },
   storeTopicId(state, topicId) {
     state.topicId = topicId;
+  },
+  pushMessage(state, message) {
+    state.chatMessages.push(message);
   }
 };
 
@@ -39,5 +42,12 @@ export const actions = {
 	resolve(result);
       });
     });
-  },  
+  },
+  formatMessage({ commit }, message) {
+    let frmtMessage = "";
+    if (message.messageType == 'newConnection') {
+      frmtMessage = ">> New connection from account: " + message.accountId;
+    }
+    commit('pushMessage', frmtMessage);
+  }
 };
