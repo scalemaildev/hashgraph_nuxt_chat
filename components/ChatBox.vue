@@ -1,8 +1,15 @@
 <template>
 <v-container>
   <v-row>
-    <v-col cols="12" align="center" justify="center">
-      Chat input goes here.
+    <v-col cols="8" align="center" justify="center">
+      <v-text-field
+	v-model="chatMessage" />
+    </v-col>
+    <v-col cols="2">
+      <v-btn
+	@click="sendMessage(chatMessage)">
+	Send
+      </v-btn>
     </v-col>
   </v-row>
 </v-container>
@@ -10,12 +17,28 @@
 
 <script>
 export default {
-  computed: {
-    chatMessages () {
-      return this.$store.state.chatMessages
+  data() {
+    return {
+      chatMessage: "",
     }
   },
+  computed: {    
+    topicId () {
+      return this.$store.state.topicId
+    },
+  },
+  mounted() {
+    this.socket = window.$nuxt.$root.mainSocket;
+  },
   methods: {
+    sendMessage(chatMessage) {
+      this.socket.emit('sendMessage', {
+	messageType: 'message',
+	message: this.chatMessage,
+	topicId: this.topicId,
+      })
+      this.chatMessage = "";
+    }
   },
 }
 </script>

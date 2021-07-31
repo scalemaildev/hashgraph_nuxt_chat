@@ -45,7 +45,11 @@ io.on('connection', socket => {
 
   socket.on('subscribeToMirror', async (data) => {    
     let topicId = data.topicId;
-    await hashgraph.subscribeToMirror(topicId);
+    await hashgraph.subscribeToMirror(io, topicId);
+  });
+
+  socket.on('sendMessage', (data) => {
+    hashgraph.sendHCSMessage(data);
   });
 });
 

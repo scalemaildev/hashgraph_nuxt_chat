@@ -43,11 +43,13 @@ export const actions = {
       });
     });
   },
-  formatMessage({ commit }, message) {
+  formatMessage({ commit }, data) {
     let frmtMessage = "";
-    if (message.messageType == 'newConnection') {
-      frmtMessage = ">> New connection from account: " + message.accountId;
+    if (data.messageType == 'newConnection') {
+      frmtMessage = ">> New connection from account: " + data.accountId;
+    } else if (data.messageType == 'message') {
+      frmtMessage = data.contents;
     }
     commit('pushMessage', frmtMessage);
-  }
+  },  
 };

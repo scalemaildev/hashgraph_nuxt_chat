@@ -9,6 +9,7 @@ const {
   TopicId,
   TopicCreateTransaction,
   TopicMessageQuery,
+  TopicMessageSubmitTransaction,
 } = require("@hashgraph/sdk");
 
 /* Inits */
@@ -63,7 +64,7 @@ async function createNewTopicId() {
   }
 }
 
-async function subscribeToMirror(topicId) {
+async function subscribeToMirror(io, topicId) {
   try {
     new TopicMessageQuery()
       .setTopicId(topicId)
@@ -80,10 +81,22 @@ async function subscribeToMirror(topicId) {
   }
 };
 
+async function sendHCSMessage(data) {
+  try {
+    await new TopicMessageSubmitTransaction({
+      topicId: data.topicId,
+      message: data.message})
+      .execute(HederaClient);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   operatorAccountId,
   initHashgraphClient,
   setTopicId,
   createNewTopicId,
-  subscribeToMirror
+  subscribeToMirror,
+  sendHCSMessage
 };
