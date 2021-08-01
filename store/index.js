@@ -51,9 +51,9 @@ export const actions = {
     if (data.messageType == 'newConnection') {
       messagePayload.message = "New server-side connection from account: " + data.accountId;
     } else if (data.messageType == 'message') {
-      console.log(data);
-      messagePayload.lede = data.contents.accountId;
-      messagePayload.message = data.contents.message;
+      let jsonPayload = JSON.parse(data.contents);
+      messagePayload.lede = jsonPayload.accountId;
+      messagePayload.message = jsonPayload.message;
     }
     commit('pushMessage', messagePayload);
   },  

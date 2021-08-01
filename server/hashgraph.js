@@ -81,11 +81,14 @@ async function subscribeToMirror(io, topicId) {
 };
 
 async function sendHCSMessage(data) {
+  let messagePayloadJson = JSON.stringify(data);
+  
   try {
     await new TopicMessageSubmitTransaction({
       topicId: data.topicId,
-      message: data})
-      .execute(HederaClient);
+      message: messagePayloadJson})
+	  .execute(HederaClient);
+    
   } catch (error) {
     console.error(error);
   }

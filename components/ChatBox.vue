@@ -32,12 +32,14 @@ export default {
   },
   methods: {
     sendMessage(chatMessage) {
-      this.socket.emit('sendMessage', {
+      let messagePayload = {
 	messageType: 'message',
 	message: this.chatMessage,
 	topicId: this.topicId,
 	accountId: this.$config.accountId
-      })
+      };
+      
+      this.socket.emit('sendMessage', messagePayload)
       this.chatMessage = "";
     }
   },
