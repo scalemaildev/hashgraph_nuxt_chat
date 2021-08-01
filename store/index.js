@@ -43,16 +43,15 @@ export const actions = {
       });
     });
   },
+  
   formatMessage({ commit }, data) {
-    let messagePayload = {
-      lede: ">>",
-      message: ""
-    };
+    let messagePayload = {};    
     if (data.messageType == 'newConnection') {
-      messagePayload.message = "New server-side connection from account: " + data.accountId;
-    } else if (data.messageType == 'message') {
+      messagePayload.lede = ">>";
+      messagePayload.message = "New server-side connection from account: " + data.accountId;      
+    } else if (data.messageType == 'message') {      
       let jsonPayload = JSON.parse(data.contents);
-      messagePayload.lede = jsonPayload.accountId;
+      messagePayload.lede = "Account ID: " + jsonPayload.accountId;
       messagePayload.message = jsonPayload.message;
     }
     commit('pushMessage', messagePayload);

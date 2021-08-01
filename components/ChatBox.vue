@@ -1,11 +1,11 @@
 <template>
-<v-container>
+<v-container class="chatbox">
   <v-row>
-    <v-col cols="8" align="center" justify="center">
+    <v-col cols="10">
       <v-text-field
 	v-model="chatMessage" />
     </v-col>
-    <v-col cols="2">
+    <v-col cols="2" justify="center" align="center">
       <v-btn
 	@click="sendMessage(chatMessage)">
 	Send
