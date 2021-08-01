@@ -52,9 +52,8 @@ function setTopicId(newTopicId) {
 
 async function createNewTopicId() {
   try {
-    const txId = await new TopicCreateTransaction()
-	  .execute(HederaClient);
-    const receipt = await txId.getReceipt(HederaClient);
+    const tx = await new TopicCreateTransaction().execute(HederaClient);
+    const receipt = await tx.getReceipt(HederaClient);
     const newTopicId = receipt.topicId + ''; // BUG: TopicId.fromString() complains about 'text.split' unless empty string is appended
     topicId = newTopicId;
     return newTopicId;
@@ -85,7 +84,7 @@ async function sendHCSMessage(data) {
   try {
     await new TopicMessageSubmitTransaction({
       topicId: data.topicId,
-      message: data.message})
+      message: data})
       .execute(HederaClient);
   } catch (error) {
     console.error(error);

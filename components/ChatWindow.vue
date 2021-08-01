@@ -5,10 +5,10 @@
       <strong>>> Chat Started</strong>
     </v-col>
   </v-row>
-  <div v-for="message in chatMessages">
+  <div v-for="messagePayload in chatMessages">
     <v-row>
       <v-col cols="12" justify="center">
-	{{ message }}
+	{{ messagePayload.lede }} {{ messagePayload.message }}
       </v-col>
     </v-row>
   </div>

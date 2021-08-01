@@ -44,12 +44,17 @@ export const actions = {
     });
   },
   formatMessage({ commit }, data) {
-    let frmtMessage = "";
+    let messagePayload = {
+      lede: ">>",
+      message: ""
+    };
     if (data.messageType == 'newConnection') {
-      frmtMessage = ">> New connection from account: " + data.accountId;
+      messagePayload.message = "New server-side connection from account: " + data.accountId;
     } else if (data.messageType == 'message') {
-      frmtMessage = data.contents;
+      console.log(data);
+      messagePayload.lede = data.contents.accountId;
+      messagePayload.message = data.contents.message;
     }
-    commit('pushMessage', frmtMessage);
+    commit('pushMessage', messagePayload);
   },  
 };

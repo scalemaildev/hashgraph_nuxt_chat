@@ -36,6 +36,7 @@ export default {
 	messageType: 'message',
 	message: this.chatMessage,
 	topicId: this.topicId,
+	accountId: this.$config.accountId
       })
       this.chatMessage = "";
     }
