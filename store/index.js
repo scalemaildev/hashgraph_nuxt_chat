@@ -48,10 +48,10 @@ export const actions = {
     let messagePayload = {};    
     if (data.messageType == 'newConnection') {
       messagePayload.lede = ">>";
-      messagePayload.message = "New server-side connection from account: " + data.accountId;      
+      messagePayload.message = "New server-side connection from Account " + data.accountId;      
     } else if (data.messageType == 'message') {      
       let jsonPayload = JSON.parse(data.contents);
-      messagePayload.lede = "Account ID: " + jsonPayload.accountId;
+      messagePayload.lede = "Account " + jsonPayload.accountId + ": ";
       messagePayload.message = jsonPayload.message;
     }
     commit('pushMessage', messagePayload);
