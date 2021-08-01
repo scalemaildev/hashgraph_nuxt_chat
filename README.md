@@ -12,8 +12,8 @@ Type your Testnet account id and private key into the .env file. Use 'npm instal
 
 ## Running
 
-Use 'npm run dev' to startup the server and client. Then go to localhost:3000 and test the browser app. Look in the console for the play-by-play of each client action. You can connect from multiple different clients if you'd like to test the chat between users.
+Use 'npm run dev' to startup the server and client. Then go to localhost:3000 and test the browser app. Look in the console for the play-by-play of each client action.
 
 ## Issues
 
-None, other than the typical Vuetify problems with different window sizes. Feel free to report some!
+Feel free to report some!
