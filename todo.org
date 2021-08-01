@@ -6,6 +6,7 @@
 ** TODO Allow chat box to send on enter
 ** TODO Create modal for each message to show other data from the payload (like the running hash)
 ** TODO Add disconnect handler (and message in chat)
+** TODO Remove connect handler and change it to be one someone subscribes to the topic
 ** TODO Add error handling for introductory panels
 - Each startup panel should raise an error version of itself if it gets a -1 back as a response. This is particuarly important for the subscribe panel when the transaction start time error pops up.
 ** TODO Fix styling of chat box and chat window

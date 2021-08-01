@@ -48,12 +48,11 @@ export default {
   },
   methods: {
     ...mapMutations([
+      'storeTopicId',
       'toggleTopicSet',
-      'toggleTopicQuerying',
-      'storeTopicId'
+      'toggleTopicQuerying'
     ]),
     ...mapActions([
-      'toggleStateFlag',
       'asyncEmit'
     ]),    
     async setTopicId(topicId) {
