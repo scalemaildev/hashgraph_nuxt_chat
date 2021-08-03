@@ -71,7 +71,6 @@ async function subscribeToMirror(io, topicId) {
       .subscribe(HederaClient, res => {	
 	const contents = new TextDecoder("utf-8").decode(res.contents);
 	io.emit('newMessage', {
-	  'messageType': 'message',
 	  'contents': contents
 	});
       });
@@ -81,6 +80,8 @@ async function subscribeToMirror(io, topicId) {
 };
 
 async function sendHCSMessage(data) {
+  data.topicId = topicId;
+  data.accountId = process.env.ACCOUNT_ID;
   let messagePayloadJson = JSON.stringify(data);
   
   try {

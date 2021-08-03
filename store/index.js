@@ -45,15 +45,22 @@ export const actions = {
   },
   
   formatMessage({ commit }, data) {
-    let messagePayload = {};    
-    if (data.messageType == 'newConnection') {
-      messagePayload.lede = ">>";
-      messagePayload.message = "New server-side connection from Account " + data.accountId;      
-    } else if (data.messageType == 'message') {      
-      let jsonPayload = JSON.parse(data.contents);
-      messagePayload.lede = "Account " + jsonPayload.accountId + ": ";
-      messagePayload.message = jsonPayload.message;
+    let inJson = JSON.parse(data.contents);
+    let outJson = {};
+    console.log(data);
+    if (inJson.messageType == 'newConnection') {
+      outJson.lede = ">>";
+      outJson.message = "Account ID " + inJson.accountId + " has subscribed to the chat topic...";
+    } else if (inJson.messageType == 'message') {
+      outJson.lede = "Account " + inJson.accountId + ": ";
+      outJson.message = inJson.message;
+    } else if (inJson.messageType == 'disconnect') {
+      outJson.lede = ">>";
+      outJson.message = "Account " + inJson.accountId + " has disconnected from the chat topic...";
+    } else {
+      console.log('Got unknown message from HCS...');
+      console.log(data);
     }
-    commit('pushMessage', messagePayload);
+    commit('pushMessage', outJson);
   },  
 };

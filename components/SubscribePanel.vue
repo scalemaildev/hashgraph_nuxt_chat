@@ -38,6 +38,9 @@ export default {
 	topicId: topicId
       })
       this.toggleMirrorSubbed(true)
+      this.socket.emit('sendMessage', {
+	'messageType': 'newConnection'
+      })
     },
   }
 }

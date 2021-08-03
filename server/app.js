@@ -22,11 +22,13 @@ const io = require('socket.io')(server, options);
 
 // IO
 io.on('connection', socket => {
-  io.emit('newMessage', {
-    'messageType': 'newConnection',
-    'accountId': process.env.ACCOUNT_ID,
+  socket.on('disconnect', () => {
+    let disconnectMsg = {
+      'messageType': 'disconnect'
+    };
+    hashgraph.sendHCSMessage(disconnectMsg);
   });
-
+  
   socket.on('initHederaClient', () => {
     let response = hashgraph.initHashgraphClient();
     io.emit('initHederaClient', response);
