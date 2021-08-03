@@ -8,7 +8,7 @@ Built from template: https://github.com/xreider/nuxt-express-boilerplate
 
 ## Setup
 
-Type your Testnet account id and private key into the .env file. Use 'npm install' to grab all the packages. You will also need nodemon installed, either locally or globally (npm install -g nodemon for globally).
+Type your Testnet account id and private key into the .env file. Use 'npm install' to grab all the packages before running.
 
 ## Running
 
