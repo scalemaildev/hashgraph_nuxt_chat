@@ -11,3 +11,4 @@
 ** DONE Fix styling of chat box and chat window
 *** TODO Chat window should be an infinite scroller
 *** TODO Fix formatting of chat box
+** TODO Chat window should scroll automatically to the bottom to keep up with new messages

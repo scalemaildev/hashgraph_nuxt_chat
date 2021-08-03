@@ -17,6 +17,6 @@ export default {
     chatMessages () {
       return this.$store.state.chatMessages;
     },
-  },
+  }
 }  
 </script>
