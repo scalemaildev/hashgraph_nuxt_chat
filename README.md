@@ -16,4 +16,4 @@ Use 'npm run dev' to startup the server and client. Then go to localhost:3000 an
 
 ## Issues
 
-Feel free to report some!
+When subscribing to the same topic multiple times from one client, duplicate messages appear in the chat.
