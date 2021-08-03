@@ -1,15 +1,11 @@
 <template>
 <v-container class="chatbox">
-  <v-row>
-    <v-col cols="11">
-      <v-text-field
-	v-model="chatMessage" />
-    </v-col>
-    <v-col cols="1" justify="center" align="center">
-      <v-btn
-	@click="sendMessage(chatMessage)">
-	Send
-      </v-btn>
+  <v-row no-gutters>
+    <v-col>
+      <div class="d-flex flex-row align-center">
+        <v-text-field v-model="chatMessage" placeholder="Enter text here..." @keypress.enter="sendMessage()"></v-text-field>
+        <v-btn class="ml-4" @click="sendMessage()">Send</v-btn>
+      </div>
     </v-col>
   </v-row>
 </v-container>
@@ -31,7 +27,7 @@ export default {
     this.socket = window.$nuxt.$root.mainSocket;
   },
   methods: {
-    sendMessage(chatMessage) {
+    sendMessage() {
       let messagePayload = {
 	messageType: 'message',
 	message: this.chatMessage,

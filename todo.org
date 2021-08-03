@@ -3,12 +3,11 @@
 - Chat box should be a text input panel spanning the usual width with a send button. The send button submits a new message to the subbed topic.
 ** DONE Chat Window
 - Chat window should spit out messages on newlines as the subscribed mirror emits them to the client. This window will need a fixed height with a scrollbar. There will need to be method handling for the chat messages to put out usernames (see the original HCS chat demo).
-** TODO Allow chat box to send on enter
-** TODO Create modal for each message to show other data from the payload (like the running hash)
+** DONE Allow chat box to send on enter
 ** TODO Add disconnect handler (and message in chat)
 ** TODO Remove connect handler and change it to be one someone subscribes to the topic
 ** TODO Add error handling for introductory panels
 - Each startup panel should raise an error version of itself if it gets a -1 back as a response. This is particuarly important for the subscribe panel when the transaction start time error pops up.
-** TODO Fix styling of chat box and chat window
+** DONE Fix styling of chat box and chat window
 *** TODO Chat window should be an infinite scroller
 *** TODO Fix formatting of chat box

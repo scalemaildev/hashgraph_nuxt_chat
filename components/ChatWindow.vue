@@ -1,17 +1,13 @@
 <template>
-<v-container class="chatwindow">
-  <v-row>
-    <v-col cols="12" justify="center">
-      <strong>>> Chat Started</strong>
+<v-container class="chatwindow overflow-y-auto pb-0 mb-0">
+  <strong>>> Chat Started</strong>
+  <v-row align="end">
+    <v-col>
+      <div v-for="msg in chatMessages">
+	<strong>{{ msg.lede }}</strong> {{ msg.message }}
+      </div>
     </v-col>
   </v-row>
-  <div v-for="messagePayload in chatMessages">
-    <v-row>
-      <v-col cols="12" justify="center">
-	<strong>{{ messagePayload.lede }}</strong> {{ messagePayload.message }}
-      </v-col>
-    </v-row>
-  </div>
 </v-container>
 </template>
 
