@@ -6,6 +6,8 @@ This is not intended to be used on the Mainnet or as a base for any dapp, but ma
 
 Built from template: https://github.com/xreider/nuxt-express-boilerplate
 
+**NOTE: This uses a badly outdated Hedera SDK. This repo might still be useful as a general guideline.**
+
 ## Setup
 
 Type your Testnet account id and private key into the .env file. Use 'npm install' to grab all the packages before running.
